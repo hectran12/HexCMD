@@ -1,0 +1,20 @@
+<READ COMMAND DATA HERE>
+creator -> Tran Trong Hoa
+version -> 0.0.1
+
+use: string 
+permission: READ
+#don't add or delete anything
+
+[------COMMANDS------]
+
+<main note="{command_name} - {description}">
+   
+   help <name_commands> - give suggestions, for the command you need to find
+   exit                 - End program
+   lang <language>      - Edit tool language
+   cons <command>       - Run command on hex environment
+   raws <view/download> <link> <file save>                  - View, or download, a site's resources!
+   loli                 - Get image loli :).
+   
+<end=main>
