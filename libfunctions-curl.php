@@ -1,0 +1,159 @@
+<?php
+
+#-- CODE V1
+
+
+function CONNECT_SERVER_ACTIVE_DEVICE ($DOMAIN)
+{
+  
+  $URL_ACTIVE = base64_decode("aHR0cHM6Ly8=").$DOMAIN.base64_decode("L2RldmljZS9HRVQucGhw");
+  $CONNECT    = curl_init($URL_ACTIVE);
+  curl_setopt($CONNECT, CURLOPT_RETURNTRANSFER, 1);
+  $EXEC_CONNECT_SERVER = curl_exec($CONNECT);
+  #CLOSE
+  curl_close($CONNECT);
+  $NUMBER_ERROR_CONNECTION = curl_errno($CONNECT);
+  $TEXT_ERROR_CONNECTION = curl_error($CONNECT);
+  if($TEXT_ERROR_CONNECTION){ 
+    $RES_ERROR = DIS_TEXT_CONVERT_TO_ERROR($NUMBER_ERROR_CONNECTION, $TEXT_ERROR_CONNECTION, $DOMAIN);
+    return $RES_ERROR;
+  } else {
+    return $EXEC_CONNECT_SERVER;
+  }
+}
+
+# GET DOMAIN CCONNECTIONS SERVER TOOL
+function DOMAIN_CONNECT_SERVER ()
+{
+  $URL_BASE_ENCODE = base64_decode("aHR0cHM6Ly9wYXN0ZWJpbi5jb20vcmF3LzV5MEJUMVJI");
+  $CONNECT         = curl_init($URL_BASE_ENCODE);
+  curl_setopt($CONNECT, CURLOPT_RETURNTRANSFER, 1);
+  $EXEC_CONNECT_SERVER = curl_exec($CONNECT);
+  #CLOSE
+  curl_close($CONNECT);
+  $NUMBER_ERROR_CONNECTION = curl_errno($CONNECT);
+  $TEXT_ERROR_CONNECTION = curl_error($CONNECT);
+  if($TEXT_ERROR_CONNECTION){ 
+    $RES_ERROR = DIS_TEXT_CONVERT_TO_ERROR($NUMBER_ERROR_CONNECTION, $TEXT_ERROR_CONNECTION, "pastebin.com");
+    return $RES_ERROR;
+  } 
+  else { 
+  $JSON_EXPORT_DECODE = json_decode($EXEC_CONNECT_SERVER);
+  return strtolower($JSON_EXPORT_DECODE->{"DOMAIN"});
+  }
+}
+#TRANSLATE LANGUAGE 
+function TRANSTEXT ($TEXT, $LANGUAGE, $MSG_ERROR, $DOMAIN)
+{
+  $URL_API_TRANSETEXT_GG = base64_decode("aHR0cHM6Ly90cmFuc2xhdGUuZ29vZ2xlYXBpcy5jb20vdHJhbnNsYXRlX2Evc2luZ2xlP2NsaWVudD1ndHgmaWU9VVRGLTgmb2U9VVRGLTgmZHQ9YmQmZHQ9ZXgmZHQ9bGQmZHQ9bWQmZHQ9cWNhJmR0PXJ3JmR0PXJtJmR0PXNzJmR0PXQmZHQ9YXQmc2w9YXImdGw9").$LANGUAGE.base64_decode("JmhsPWhsJnE9").urlencode($TEXT);
+  $CREATE_INIT_CURL = curl_init($URL_API_TRANSETEXT_GG);
+  $PROT = array(
+    CURLOPT_RETURNTRANSFER => 1,
+    CURLOPT_USERAGENT      => 'Mozilla/5.0 (Linux; Android 8.0.0; LDN-LX2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.74 Mobile Safari/537.36'
+  );
+  curl_setopt_array($CREATE_INIT_CURL, $PROT);
+  $EXEC_CONNECT_SERVER = curl_exec($CREATE_INIT_CURL);
+  #CLOSE
+  curl_close($CREATE_INIT_CURL);
+  $NUMBER_ERROR_CONNECTION = curl_errno($CREATE_INIT_CURL);
+  $TEXT_ERROR_CONNECTION = curl_error($CREATE_INIT_CURL);
+  if($TEXT_ERROR_CONNECTION){ 
+    $RES_ERROR = DIS_TEXT_CONVERT_TO_ERROR($NUMBER_ERROR_CONNECTION, $TEXT_ERROR_CONNECTION, $DOMAIN);
+    CHECK_CONNECTION($RES_ERROR, $MSG_ERROR);
+  } else {
+    $JSON_TEXT = json_decode($EXEC_CONNECT_SERVER);
+    return $JSON_TEXT[0][0][0];
+  }
+}
+
+# GET COMMANDS CODE SERVER 
+function GET_CODE_SERVER_COMMANDS ()
+{
+  $URL_GET_CODE = base64_decode("aHR0cDovL2VsaXpoZXguY29tL2RvY3VtZW50L2NvbW1hbmRzLnR4dA==");
+  $CREATE_INIT_CURL = curl_init($URL_GET_CODE);
+  $PROT = array(
+    CURLOPT_RETURNTRANSFER => 1
+  );
+  curl_setopt_array($CREATE_INIT_CURL, $PROT);
+  $EXEC_CONNECT_SERVER = curl_exec($CREATE_INIT_CURL);
+  #CLOSE
+  curl_close($CREATE_INIT_CURL);
+  $NUMBER_ERROR_CONNECTION = curl_errno($CREATE_INIT_CURL);
+  $TEXT_ERROR_CONNECTION = curl_error($CREATE_INIT_CURL);
+  if($TEXT_ERROR_CONNECTION){ 
+    $DOMAIN    = "elizhex.com";
+    $RES_ERROR = DIS_TEXT_CONVERT_TO_ERROR($NUMBER_ERROR_CONNECTION, $TEXT_ERROR_CONNECTION, $DOMAIN);
+    return $RES_ERROR;
+  } else {
+    return $EXEC_CONNECT_SERVER;
+  }
+}
+
+# CONVERT ERROR TO JSON 
+function DIS_TEXT_CONVERT_TO_ERROR ($CODE_ERROR, $MESSAGE, $URL)
+{
+  $ARRAY_TO_CONVERT = array(
+    "CODE" => $CODE_ERROR,
+    "MESSAGE" => CONVERT_URL_TO_XXX($MESSAGE, $URL)
+  );
+  return json_encode($ARRAY_TO_CONVERT);
+}
+
+# CONVERT URL TO TEXT XXXX
+function CONVERT_URL_TO_XXX ($MESSAGE, $URL)
+{
+  $EXPLODE_URL = explode($URL, $MESSAGE);
+  if ($EXPLODE_URL[0] == $MESSAGE)
+  {
+    return $MESSAGE;
+  } else {
+    return $EXPLODE_URL[0]."XXX ";
+  }
+
+}
+
+# Out put error connect
+function CHECK_CONNECTION ($VARCODE, $MSG_ERROR)
+{
+    if($VARCODE[0].$VARCODE[1].$VARCODE[2].$VARCODE[3].$VARCODE[4].$VARCODE[5] == '{"CODE')
+    {
+    $JSON_EXPORT = json_decode($VARCODE);
+    $MESSAGE_OUTPUT = $JSON_EXPORT->{"MESSAGE"};
+    $CODE_OUTPUT    = $JSON_EXPORT->{"CODE"};
+    die($MSG_ERROR.$MESSAGE_OUTPUT.", code error ".$CODE_OUTPUT);
+    }
+}
+
+# Out put error no exit
+function CHECK_CONNECTION_NO_EXIT ($VARCODE, $MSG_ERROR)
+{
+    if($VARCODE[0].$VARCODE[1].$VARCODE[2].$VARCODE[3].$VARCODE[4].$VARCODE[5] == '{"CODE')
+    {
+    $JSON_EXPORT = json_decode($VARCODE);
+    $MESSAGE_OUTPUT = $JSON_EXPORT->{"MESSAGE"};
+    $CODE_OUTPUT    = $JSON_EXPORT->{"CODE"};
+    return($MSG_ERROR.$MESSAGE_OUTPUT.", code error ".$CODE_OUTPUT."\n");
+    }
+}
+
+#Get source 
+function GET_SOURCE ($URL)
+{
+  $CREATE_INIT_CURL = curl_init($URL);
+  $PROT = array(
+    CURLOPT_RETURNTRANSFER => 1
+  );
+  curl_setopt_array($CREATE_INIT_CURL, $PROT);
+  $EXEC_CONNECT_SERVER = curl_exec($CREATE_INIT_CURL);
+  #CLOSE
+  curl_close($CREATE_INIT_CURL);
+  $NUMBER_ERROR_CONNECTION = curl_errno($CREATE_INIT_CURL);
+  $TEXT_ERROR_CONNECTION = curl_error($CREATE_INIT_CURL);
+  if($TEXT_ERROR_CONNECTION){ 
+    $DOMAIN    = "elizhex.com";
+    $RES_ERROR = DIS_TEXT_CONVERT_TO_ERROR($NUMBER_ERROR_CONNECTION, $TEXT_ERROR_CONNECTION, $DOMAIN);
+    return $RES_ERROR;
+  } else {
+    return $EXEC_CONNECT_SERVER;
+  }
+}
